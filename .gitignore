@@ -1,0 +1,9 @@
+node_modules
+.idea
+bundle.js
+npm-debug.log
+build
+index.html
+.DS_Store
+*~
+package-lock.json
