@@ -3,9 +3,9 @@ import randomize from '../helpers/randomize';
 import store from '../stores/redux';
 
 export const initialState = {
-    positions: [],
-    openCards: [],
-    moves: 0
+    cards: [],
+    moves: 0,
+    finish: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -15,13 +15,19 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...initialState,
-                positions: randomPositions()
+                cards: randomPositions()
             };
 
-        case AppConstants.GAME_OPEN_CARD:
+        case AppConstants.GAME_UPDATE_CARDS:
             return {
                 ...state,
-                openCards: state.openCards.concat([action.action])
+                cards: action.action
+            };
+
+        case AppConstants.GAME_INCREMENT_MOVES:
+            return {
+                ...state,
+                moves: state.moves + 1
             };
 
         default:
@@ -32,7 +38,13 @@ export const reducer = (state = initialState, action) => {
 const randomPositions = () => {
     const data = store.getState().governors.list;
     let ids = Object.keys(data);
-    ids = ids.concat(ids);
+    let cards = ids.concat(ids).map(id => {
+        return {
+            id,
+            open: false,
+            hidden: false
+        };
+    });
 
-    return randomize(ids);
-}
+    return randomize(cards);
+};

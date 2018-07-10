@@ -24,22 +24,18 @@ class Card extends React.Component {
     constructor(props) {
         super();
 
-        this.state = {
-            open: props.open
-        };
-
         this.onClick = this.onClick.bind(this);
     }
 
     getMainClass() {
         return classnames({
             'memori-card': true,
-            'memori-card_open': this.state.open
+            'memori-card_open': this.props.open
         });
     }
 
     onClick() {
-        if (this.state.open) {
+        if (this.props.open) {
             return;
         }
 

@@ -7,13 +7,13 @@ import './style.less';
 const ListCards = connect(
   function mapStateToProps(state) {
     return {
-      list: state.game.positions,
-      openCards: state.game.openCards
+        cards: state.game.cards,
     };
   },
   function mapDispatchToProps(dispatch) {
     return {
-        onClickOpen: (id) =>  dispatch(actions.onClickOpen(id))
+        updateCards: (cards) =>  dispatch(actions.updateCards(cards)),
+        incrementMoves: () =>  dispatch(actions.incrementMoves())
     };
   }
 )(ListCardsComponent);

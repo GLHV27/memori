@@ -1,10 +1,16 @@
 import AppConstants from '../../constants/AppConstants';
 
 export const actions = {
-    onClickOpen: (id) => {
+    updateCards(cards) {
         return {
-            type: AppConstants.GAME_OPEN_CARD,
-            action: id
+            type: AppConstants.GAME_UPDATE_CARDS,
+            action: cards
+        };
+    },
+
+    incrementMoves() {
+        return {
+            type: AppConstants.GAME_INCREMENT_MOVES
         };
     }
 }

@@ -1,37 +1,87 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import Card from '../Card/Card';
 
 class ListCards extends React.Component {
     static defaultProps = {
-        list: [],
-        openCards: []
+        cards: [],
+        duration: 800
     }
 
     constructor(props) {
         super();
 
-        this.state = {};
+        this.state = {
+            lastCard: null,
+            disabled: false
+        };
 
         this.actions = {};
-        this.actions.onClickOpen = props.onClickOpen;
+        this.actions.updateCards = props.updateCards;
+        this.actions.incrementMoves = props.incrementMoves;
+
+        this.onClickOpen = this.onClickOpen.bind(this);
     }
 
-    checkOpen(id) {
-        return this.props.openCards.indexOf(id) !== -1;
+    setDisabled(item) {
+        this.setState({
+            disabled: true
+        }, () => {
+            if (+item.id !== +this.state.lastCard.id) {
+                setTimeout(() => this.closeCards(item), this.props.duration);
+            } else {
+                setTimeout(() => this.hiddenCards(item), this.props.duration);
+            }
+        });
+    }
+
+    setLastCard(item, callback) {
+        this.setState({
+            lastCard: item
+        }, () => {
+            callback && callback();
+        });
+    }
+
+    closeCards(item) {
+debugger;
+    }
+
+    hiddenCards(item) {
+debugger;
+    }
+
+    onClickOpen(item) {
+        if (this.state.disabled) {
+            return;
+        }
+
+        let cards = [...this.props.cards];
+
+        cards[item.index].open = true;
+
+        if (!this.state.lastCard) {
+            this.setLastCard(item, () => {
+                this.actions.updateCards(cards);
+            });
+        } else {
+            this.actions.incrementMoves();
+            this.actions.updateCards(cards);
+            this.setDisabled(item);
+        }
     }
 
     render() {
         return (
             <ul className="memori-list">
-                {this.props.list.map((key, i) => (
+                {this.props.cards.map((item, i) => (
                     <li className="memori-list__item" key={i}>
                         <Card
-                            id={+key}
+                            id={+item.id}
                             index={i}
-                            open={this.checkOpen(+key)}
-                            onClickOpen={this.actions.onClickOpen}
+                            open={item.open}
+                            hidden={item.hidden}
+                            onClickOpen={this.onClickOpen}
                         />
                     </li>
                 ))}
@@ -41,8 +91,8 @@ class ListCards extends React.Component {
 };
 
 ListCards.propTypes = {
-    list: PropTypes.array,
-    openCards: PropTypes.array
+    cards: PropTypes.array,
+    duration: PropTypes.number
 };
 
 export default ListCards;

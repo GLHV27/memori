@@ -6,16 +6,16 @@ const randomInteger = (min, max) => {
 
 const randomize = (list = []) => {
     const length = list.length - 1;
-    let randomList = [];
 
     for (let i = 0; i < length; i++) {
         let j = randomInteger(i, length);
 
-        randomList[i] = list[j];
-        randomList[j] = list[i];
+        const store = list[i];
+        list[i] = list[j];
+        list[j] = store;
     }
 
-    return randomList;
+    return list;
 };
 
 export default randomize;
