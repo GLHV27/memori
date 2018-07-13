@@ -6,7 +6,10 @@ import './style.less';
 
 const Governor = connect(
   function mapStateToProps(state) {
-    return {};
+    return {
+        visible: state.game.isVisiblePopup,
+        data: state.game.popupData
+    };
   },
   function mapDispatchToProps(dispatch) {
     return {

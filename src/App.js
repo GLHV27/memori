@@ -15,7 +15,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="memori">
-                <div className="memori-layput">
+                <div className="memori-layout">
                     <Moves />
                     <ListCards />
                     <Governor />
