@@ -23,7 +23,7 @@ let plugins = [
     new webpack.optimize.AggressiveMergingPlugin(),
     new ExtractTextPlugin(addHash(`styles.css`, 'contenthash')),
     new HtmlWebpackPlugin({
-        title: 'widget-chess',
+        title: 'Memori',
         template: 'src/index.hbs',
         filename: 'index.html',
         inject: 'body',

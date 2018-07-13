@@ -12,7 +12,14 @@ export const actions = {
         return {
             type: AppConstants.GAME_INCREMENT_MOVES
         };
-    }
+    },
+
+    openPopup(id) {
+        return {
+            type: AppConstants.GAME_OPEN_POPUP,
+            action: id
+        };
+    },
 }
 
 export default actions;

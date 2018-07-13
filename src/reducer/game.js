@@ -5,7 +5,9 @@ import store from '../stores/redux';
 export const initialState = {
     cards: [],
     moves: 0,
-    finish: false
+    finish: false,
+    popupData: {},
+    isVisiblePopup: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -30,6 +32,13 @@ export const reducer = (state = initialState, action) => {
                 moves: state.moves + 1
             };
 
+        case AppConstants.GAME_OPEN_POPUP:
+            return {
+                ...state,
+                isVisiblePopup: true,
+                popupData: getGovernor(action.action)
+            };
+
         default:
             return state;
     }
@@ -47,4 +56,9 @@ const randomPositions = () => {
     });
 
     return randomize(cards);
+};
+
+const getGovernor = (id) => {
+    const data = store.getState().governors.list;
+    return data[id];
 };

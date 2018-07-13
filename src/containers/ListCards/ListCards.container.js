@@ -13,7 +13,8 @@ const ListCards = connect(
   function mapDispatchToProps(dispatch) {
     return {
         updateCards: (cards) =>  dispatch(actions.updateCards(cards)),
-        incrementMoves: () =>  dispatch(actions.incrementMoves())
+        incrementMoves: () =>  dispatch(actions.incrementMoves()),
+        openPopup: (id) =>  dispatch(actions.openPopup(id))
     };
   }
 )(ListCardsComponent);
