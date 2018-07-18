@@ -5,7 +5,7 @@ class Moves extends React.Component {
     static defaultProps = {
         cards: [],
         duration: 800
-    }
+    };
 
     render() {
         return (
