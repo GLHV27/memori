@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../Card/Card';
+import Card from '../../components/Card/Card';
 
 class ListCards extends React.Component {
     static defaultProps = {
@@ -19,6 +19,7 @@ class ListCards extends React.Component {
         this.actions = {};
         this.actions.updateCards = props.updateCards;
         this.actions.incrementMoves = props.incrementMoves;
+        this.actions.openPopup = props.openPopup;
 
         this.onClickOpen = this.onClickOpen.bind(this);
     }
@@ -35,6 +36,15 @@ class ListCards extends React.Component {
         });
     }
 
+    takeOffDisabled() {
+        setTimeout(() => {
+            this.setState({
+                disabled: false,
+                lastCard: null
+            });
+        }, this.props.duration);
+    }
+
     setLastCard(item, callback) {
         this.setState({
             lastCard: item
@@ -44,11 +54,24 @@ class ListCards extends React.Component {
     }
 
     closeCards(item) {
-debugger;
+        let cards = [...this.props.cards];
+
+        cards[item.index].open = false;
+        cards[this.state.lastCard.index].open = false;
+
+        this.actions.updateCards(cards);
+        this.takeOffDisabled();
     }
 
     hiddenCards(item) {
-debugger;
+        let cards = [...this.props.cards];
+
+        cards[item.index].hidden = true;
+        cards[this.state.lastCard.index].hidden = true;
+
+        this.actions.updateCards(cards);
+        this.actions.openPopup(item.id);
+        this.takeOffDisabled();
     }
 
     onClickOpen(item) {
@@ -81,7 +104,7 @@ debugger;
                             index={i}
                             open={item.open}
                             hidden={item.hidden}
-                            onClickOpen={this.onClickOpen}
+                            onClickOpen={!item.hidden ? this.onClickOpen : null}
                         />
                     </li>
                 ))}

@@ -18,6 +18,7 @@ const images = {
 class Card extends React.Component {
     static defaultProps = {
         open: false,
+        hidden: false,
         id: null
     }
 
@@ -30,7 +31,8 @@ class Card extends React.Component {
     getMainClass() {
         return classnames({
             'memori-card': true,
-            'memori-card_open': this.props.open
+            'memori-card_open': this.props.open,
+            'memori-card_hidden': this.props.hidden
         });
     }
 
@@ -62,6 +64,7 @@ class Card extends React.Component {
 
 Card.propTypes = {
     open: PropTypes.bool,
+    hidden: PropTypes.bool,
     id: PropTypes.number
 };
 

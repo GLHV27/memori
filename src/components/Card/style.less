@@ -10,7 +10,11 @@
     transition: transform 0.8s ease;
 
     &_open {
-        transform: rotateY(180deg);
+        transform: rotateY(180deg) scale(1);
+    }
+
+    &_hidden {
+        transform: rotateY(180deg) scale(0);
     }
 
     &__hand {

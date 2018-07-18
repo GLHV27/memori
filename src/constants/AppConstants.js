@@ -7,6 +7,7 @@ const keys = keyMirror({
     'GAME_START': null,
     'GAME_UPDATE_CARDS': null,
     'GAME_INCREMENT_MOVES': null,
+    'GAME_OPEN_POPUP': null,
 });
 
 export default keys;
