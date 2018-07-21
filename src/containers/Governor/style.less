@@ -1,3 +1,44 @@
-.memori-governor {
+@import '../../statics/style/variables.less';
 
+@path-to-pictures: '../../statics/images/';
+
+.memori-governor {
+    padding: 11px 11px 25px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.4);
+    border: 2px solid #000;
+    background-image: url('@{path-to-pictures}bgr-modal.png');
+    text-align: center;
+
+    @media @retiona-display {
+        background-size: 50px;
+    }
+
+    &__image {
+        padding-bottom: 81.5%;
+        border-radius: 4px;
+        background: no-repeat center / cover;
+    }
+
+    &__title {
+        margin-top: 15px;
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    &__subtitle {
+        margin-top: 6px;
+        font-size: 12px;
+        line-height: 1;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    &__text {
+        margin-top: 10px;
+    }
+
+    &__action {
+        margin-top: 12px;
+    }
 }

@@ -5,7 +5,7 @@ import Card from '../../components/Card/Card';
 class ListCards extends React.Component {
     static defaultProps = {
         cards: [],
-        duration: 800
+        duration: 600
     }
 
     constructor(props) {

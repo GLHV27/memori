@@ -4,7 +4,13 @@
   "main": "main.js",
   "scripts": {
     "devserver": "cross-env NODE_ENV=development webpack-dev-server",
+    "devserver-production": "cross-env NODE_ENV=production webpack-dev-server --debug --output-pathinfo --watch",
+    "build": "cross-env NODE_ENV=build webpack -p",
+    "production": "cross-env NODE_ENV=production webpack -p",
+    "webpack": "webpack",
     "webpack-production": "cross-env NODE_ENV=production webpack -p",
+    "webpack-staging": "cross-env NODE_ENV=production webpack -p",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -45,6 +51,7 @@
     "react-hot-loader": "4.0.0",
     "react-modal": "3.5.1",
     "react-redux": "5.0.7",
+    "react-transition-group": "^2.4.0",
     "redux": "3.7.2",
     "redux-devtools-extension": "2.13.2",
     "redux-thunk": "2.2.0",

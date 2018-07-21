@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import GovernorComponent from './Governor.component';
-// import actions from './Governor.actions';
+import actions from './Governor.actions';
 
 import './style.less';
 
@@ -13,7 +13,7 @@ const Governor = connect(
   },
   function mapDispatchToProps(dispatch) {
     return {
-        // updateCards: (cards) =>  dispatch(actions.updateCards(cards)),
+        hiddenModal: () =>  dispatch(actions.hiddenModal()),
     };
   }
 )(GovernorComponent);

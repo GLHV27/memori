@@ -23,15 +23,33 @@ class CustomModal extends React.Component {
         this.props.onConfirm();
     }
 
+    getStyle() {
+        let overlay = {};
+
+        if (this.props.visible) {
+            overlay = {
+                pointerEvents: 'auto',
+                transform: 'scale(1)',
+                opacity: 1
+            };
+        }
+
+        return {
+            ...style,
+            overlay: {
+                ...style.overlay,
+                ...overlay
+            },
+        };
+    }
+
     render() {
         return (
             <ReactModal
-                isOpen={this.props.visible}
-                style={style}
+                isOpen={true}
+                style={this.getStyle()}
             >
-                <form
-                    // onSubmit={this.props.onSubmit ? this.props.onSubmit : null}
-                >
+                <form>
                     {this.props.children}
                 </form>
             </ReactModal>
@@ -41,16 +59,16 @@ class CustomModal extends React.Component {
 
 CustomModal.propTypes = {
     visible: PropTypes.bool,
-    loading: PropTypes.bool,
     confirmDisabled: PropTypes.bool,
-    className: PropTypes.string
+    className: PropTypes.string,
+    duration: PropTypes.number
 };
 
 CustomModal.defaultProps = {
     visible: true,
-    loading: false,
     confirmDisabled: false,
-    className: ''
+    className: '',
+    duration: 600
 };
 
 CustomModal.contextTypes = {

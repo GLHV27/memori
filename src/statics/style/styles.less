@@ -1,17 +1,18 @@
-@import '../../statics/style/variables.less';
-
 .memori {
     max-width: 650px;
     margin: 0 auto;
-    padding: 15px 15px 55px;
-    background: url('@{path-to-pictures}bgr.png') repeat top left;
-
-    @media @retiona-display {
-        background-size: 80px;
-    }
 
     &-layout {
         max-width: 295px;
         margin: 0 auto;
+    }
+
+    &-game {
+        padding: 15px 15px 55px;
+        background: url('@{path-to-pictures}bgr.png') repeat top left;
+
+        @media @retiona-display {
+            background-size: 80px;
+        }
     }
 }

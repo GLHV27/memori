@@ -3,8 +3,10 @@ import randomize from '../helpers/randomize';
 import store from '../stores/redux';
 
 export const initialState = {
+    route: 'game',
     cards: [],
     moves: 0,
+    match: 0,
     finish: false,
     popupData: {},
     isVisiblePopup: false
@@ -39,6 +41,16 @@ export const reducer = (state = initialState, action) => {
                 popupData: getGovernor(action.action)
             };
 
+        case AppConstants.GAME_HIDDEN_POPUP:
+            let match = state.match + 1;
+
+            return {
+                ...state,
+                match,
+                isVisiblePopup: false,
+                route: checkRoute(match, state.cards.length / 2)
+            };
+
         default:
             return state;
     }
@@ -60,5 +72,12 @@ const randomPositions = () => {
 
 const getGovernor = (id) => {
     const data = store.getState().governors.list;
-    return data[id];
+    return {
+        ...data[id],
+        id
+    };
+};
+
+const checkRoute = (match, numberCards) => {
+    return match === numberCards ? 'finish' : 'game';
 };

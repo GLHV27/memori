@@ -1,19 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import config from '../../config';
 import './style.less';
 
-const path = '../../statics/images/governors/';
-const images = {
-    1: require(`../../statics/images/governors/s_artuhov.jpg`),
-    2: require(`../../statics/images/governors/s_azarov.jpg`),
-    3: require(`../../statics/images/governors/s_burkov.jpg`),
-    4: require(`../../statics/images/governors/s_civilev.jpg`),
-    5: require(`../../statics/images/governors/s_moor.jpg`),
-    6: require(`../../statics/images/governors/s_nikitin.jpg`),
-    7: require(`../../statics/images/governors/s_nikolaev.jpg`),
-    8: require(`../../statics/images/governors/s_nosov.jpg`)
-};
+const avatars = config.avatars.small;
 
 class Card extends React.Component {
     static defaultProps = {
@@ -55,7 +46,7 @@ class Card extends React.Component {
             >
                 <div className="memori-card__hand memori-card__hand_shirt" />
                 <div className="memori-card__hand memori-card__hand_face" style={{
-                    backgroundImage: `url(${images[this.props.id]})`
+                    backgroundImage: `url(${avatars[this.props.id]})`
                 }} />
             </div>
         )

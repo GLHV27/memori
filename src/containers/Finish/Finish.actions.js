@@ -1,9 +1,9 @@
 import AppConstants from '../../constants/AppConstants';
 
 export const actions = {
-    hiddenModal() {
+    resetGame() {
         return {
-            type: AppConstants.GAME_HIDDEN_POPUP
+            type: AppConstants.GAME_START
         };
     },
 }

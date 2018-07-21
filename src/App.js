@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ActionGames from './actions/ActionGames';
-import ListCards from './containers/ListCards/ListCards.container';
-import Moves from './containers/Moves/Moves.container';
-import Governor from './containers/Governor/Governor.container';
+import Body from './containers/Body/Body.container';
 
 import './statics/style/index.less';
 
@@ -15,11 +13,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="memori">
-                <div className="memori-layout">
-                    <Moves />
-                    <ListCards />
-                    <Governor />
-                </div>
+                <Body />
             </div>
         )
     }
